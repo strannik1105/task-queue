@@ -1,8 +1,9 @@
-import asyncio
+from app import App
 
 
-async def main():
-    pass
+def main():
+    App.get_instance().run()
+
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
