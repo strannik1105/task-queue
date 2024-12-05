@@ -1,10 +1,10 @@
+from task_queue.task_pool import TaskPool
 from utils.service import AbstractService
-from utils.singleton import Singleton
 
 
 class TaskQueue(AbstractService):
     def __init__(self) -> None:
-        print("Queue init")
+        self._task_pool = TaskPool()
 
     async def run(self) -> None:
-        print("Queue run")
+        await self._task_pool.run()
