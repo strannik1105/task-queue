@@ -1,13 +1,19 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from uvicorn import Config, Server
 
-from utils.service import AbstractService
+from common.service import AbstractService
+from producer.router.router import TaskRouter
 
 
 class Producer(AbstractService):
     def __init__(self) -> None:
         self._app = FastAPI()
+        self._routers = [TaskRouter]
+
+        self.init_app()
+
+    def init_app(self) -> None:
         self._app.add_middleware(
             CORSMiddleware,
             allow_origins=["*"],
@@ -15,6 +21,8 @@ class Producer(AbstractService):
             allow_methods=["*"],
             allow_headers=["*"],
         )
+        for router in self._routers:
+            self._app.include_router(router().fastapi_router)
 
     def get_app(self) -> FastAPI:
         return self._app

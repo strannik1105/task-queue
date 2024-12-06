@@ -6,8 +6,8 @@ import uvicorn
 from app.config import AppConfig
 from producer import Producer
 from task_queue import TaskQueue
-from utils import Singleton
-from utils.service import AbstractService
+from common import Singleton
+from common.service import AbstractService
 
 
 class AbstractApp(abc.ABC):

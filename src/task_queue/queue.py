@@ -1,5 +1,5 @@
 from task_queue.task_pool import TaskPool
-from utils.service import AbstractService
+from common.service import AbstractService
 
 
 class TaskQueue(AbstractService):
