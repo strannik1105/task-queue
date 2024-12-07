@@ -2,6 +2,9 @@ import abc
 
 
 class AbstractTask(abc.ABC):
+    def __init__(self, *, task_id):
+        self.id = task_id
+
     @abc.abstractmethod
-    async def exec(self) -> None:
+    def exec(self) -> None:
         pass

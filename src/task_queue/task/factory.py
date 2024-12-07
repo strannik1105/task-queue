@@ -8,5 +8,5 @@ TASK_MAPPER = {TaskType.Mock: MockTask}
 
 class TaskFactory:
     @staticmethod
-    def get_task(type_: TaskType) -> AbstractTask:
-        return TASK_MAPPER[type_]()
+    def get_task(type_: TaskType, *args, **kwargs) -> AbstractTask:
+        return TASK_MAPPER[type_](*args, **kwargs)
