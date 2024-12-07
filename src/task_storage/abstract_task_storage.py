@@ -20,5 +20,9 @@ class AbstractTaskStorage(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def get_task_status(self, key: str) -> StatusType:
+        pass
+
+    @abc.abstractmethod
     async def change_task_status(self, key: str, status: StatusType) -> None:
         pass

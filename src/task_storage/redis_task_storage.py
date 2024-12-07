@@ -33,6 +33,10 @@ class RedisTaskStorage(AbstractTaskStorage):
         except NotFoundError:
             raise IndexError
 
+    async def get_task_status(self, key: str) -> StatusType:
+        task = await Task.get(key)
+        return task.status
+
     async def change_task_status(self, key: str, status: StatusType) -> None:
         task = await Task.get(key)
         task.status = status
